@@ -7,14 +7,14 @@ $(document).ready(function() {
     var vguesrem= document.getElementById("guesrem");
     var vguesremcounter= 6;
     var vgueswords= document.getElementById("lgueswords");
-    // var vgueswordscounter;
     var vword= document.getElementById("word");
     
    
     var game={
         wordsarray: ["vampire","zombie","monster","underground"],
         lose: true,
-        word,
+        word:"",
+        key:"",
         choosing_random: function() {
             return this.wordsarray[Math.floor(Math.random() * this.wordsarray.length)];           
         },
@@ -26,16 +26,30 @@ $(document).ready(function() {
             console.log(vword.textContent);
         },
         reset: function(){
-             vword.textContent="";
-
+            vwins.textContent= 0;
+            vloses.textContent= 0;
+            vguesrem.textContent= 6;
+            vgueswords.textContent= "";
+            vword.textContent="";
+            vwinscounter= 0;
+            vlosescounter= 0;
+            vguesremcounter=6;
         },
+        sust_letter: function(index, replace){
+           return vword.textContent.substring(0, index) + replace + vword.textContent.substring(index + 1);
+        },
+
+
 
     };
 
 
-    game.word = game.choosing_random();
-    console.log(game.word);
-    game.empty_word();
+    game.word = game.choosing_random();////////
+    console.log(game.word);////////
+    game.empty_word();////////
+    key="q";//////////
+    var n = game.word.indexOf("a");
+    console.log(n);
     
 
 });
