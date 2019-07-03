@@ -7,9 +7,10 @@ $(document).ready(function() {
   var vguesremcounter = 6;
   var vgueswords = document.getElementById("gueswords");
   var vword = document.getElementById("word");
+  var vpush = document.getElementById("push");
 
   var game = {
-    wordsarray: ["vampirea", "zombie", "monster", "underground"],
+    wordsarray: ["vampire", "zombie", "monster", "underground"],
     stop: true,
     word: "",
     userkey: "",
@@ -20,24 +21,19 @@ $(document).ready(function() {
       ];
     },
     empty_word: function() {
-      vword.textContent = ""; /////////////////borrar
+      vword.textContent = "";
       for (let i = 0; i < this.word.length; i++) {
         vword.textContent = vword.textContent + "_ ";
       }
     },
     reset: function() {
-      // vwins.textContent= 0;
-      // vloses.textContent= 0;
       vguesrem.textContent = 6;
       vgueswords.textContent = "";
       vword.textContent = "";
-      // vwinscounter= 0;
-      // vlosescounter= 0;
       vguesremcounter = 6;
-      this.word = this.choosing_random();
-      this.empty_word();
       this.userkey = "";
       this.stop = true;
+      vword.textContent = "Push a key to star.";
       this.matchesnumber = 0;
     },
 
@@ -52,40 +48,47 @@ $(document).ready(function() {
           vword.textContent = vword.textContent + temp[j];
         }
       }
+    },
+
+    validate: function(strValue) {
+      var objRegExp = /^[a-z]+$/;
+      return objRegExp.test(strValue);
     }
   };
 
-  game.word = game.choosing_random(); ////////
-  game.empty_word(); ////////
-  console.log(game.word); ////////
-  game.stop = false; ///////////
-
   document.onkeyup = function(event) {
+    game.userkey = event.key;
     if (!game.stop) {
-      game.userkey = event.key;
-      if (vgueswords.textContent.indexOf(game.userkey) === -1) {
-        vgueswords.textContent = vgueswords.textContent + " " + game.userkey;
-        for (var i = 0; i < game.word.length; i++) {
-          if (game.word[i] === game.userkey) {
-            game.sust_letter(i);
-            game.matchesnumber++;
-            if (game.matchesnumber === game.word.length) {
-              game.stop = true;
-              vwinscounter++;
-              vwins.textContent = vwinscounter;
+      if (game.validate(game.userkey)) {
+        if (vgueswords.textContent.indexOf(game.userkey) === -1) {
+          vgueswords.textContent = vgueswords.textContent + " " + game.userkey;
+          for (var i = 0; i < game.word.length; i++) {
+            if (game.word[i] === game.userkey) {
+              game.sust_letter(i);
+              game.matchesnumber++;
+              if (game.matchesnumber === game.word.length) {
+                game.reset();
+                vwinscounter++;
+                vwins.textContent = vwinscounter;
+              }
+            }
+          }
+          if (game.word.indexOf(game.userkey) === -1) {
+            vguesremcounter--;
+            vguesrem.textContent = vguesremcounter;
+            if (vguesremcounter === 0) {
+              game.reset();
+              vlosescounter++;
+              vloses.textContent = vlosescounter;
             }
           }
         }
-        if (game.word.indexOf(game.userkey) === -1) {
-          vguesremcounter--;
-          vguesrem.textContent = vguesremcounter;
-          if (vguesremcounter === 0) {
-            game.stop = true;
-            vlosescounter++;
-            vloses.textContent = vlosescounter;
-          }
-        }
       }
+    } else {
+      game.stop = false;
+      game.word = game.choosing_random();
+      game.empty_word();
+      //   console.log(game.word);
     }
   };
 });

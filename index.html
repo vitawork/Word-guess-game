@@ -8,16 +8,26 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/style.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/game.js"></script>
     <title>word guess</title>
   </head>
   <body>
-    
-
-    <div id="mainbox" class="container-fluid">
+    <div class="container-fluid">
       <div class="row">
+        <div
+          class="header text-center jumbotron col-xs-offset-0 col-xs-12 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-8"
+        >
+          <h1>Hanged Game</h1>
+        </div>
+      </div>
+      <div id="mainbox" class="row">
         <div
           class="jumbotron col-xs-offset-0 col-xs-12 col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-8"
         >
@@ -35,10 +45,10 @@
           </div>
           <hr class="my-4" />
           <div id="centerdiv" class="row">
-            <div class="col-xs-offset-1 col-xs-5 col-sm-offset-1 col-sm-6">
+            <div class=" col-xs-12 col-sm-offset-1 col-sm-6">
               ////////////////muneco
             </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-offset-1 col-sm-4">
+            <div class="col-xs-12  col-sm-5">
               <h3>
                 Guesses remaining: <span id="guesrem"><strong> 6</strong></span>
               </h3>
@@ -50,15 +60,12 @@
           <hr class="my-4" />
           <div id="worddiv" class="row text-center">
             <h1>
-              <span id="word"><strong> --------</strong></span>
+              <span id="word"><strong> Push a key to star.</strong></span>
             </h1>
           </div>
         </div>
       </div>
     </div>
-
-    
-
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
