@@ -10,9 +10,10 @@ $(document).ready(function() {
 
   var game = {
     wordsarray: ["vampirea", "zombie", "monster", "underground"],
-    lose: true,
+    stop: true,
     word: "",
     userkey: "",
+    matchesnumber: 0,
     choosing_random: function() {
       return this.wordsarray[
         Math.floor(Math.random() * this.wordsarray.length)
@@ -23,7 +24,6 @@ $(document).ready(function() {
       for (let i = 0; i < this.word.length; i++) {
         vword.textContent = vword.textContent + "_ ";
       }
-      console.log(vword.textContent);
     },
     reset: function() {
       // vwins.textContent= 0;
@@ -37,7 +37,8 @@ $(document).ready(function() {
       this.word = this.choosing_random();
       this.empty_word();
       this.userkey = "";
-      this.lose = true;
+      this.stop = true;
+      this.matchesnumber = 0;
     },
 
     sust_letter: function(index) {
@@ -57,26 +58,29 @@ $(document).ready(function() {
   game.word = game.choosing_random(); ////////
   game.empty_word(); ////////
   console.log(game.word); ////////
-  game.lose = false; ///////////
+  game.stop = false; ///////////
 
   document.onkeyup = function(event) {
-    if (!game.lose) {
+    if (!game.stop) {
       game.userkey = event.key;
-      var ifmatch = false;
       if (vgueswords.textContent.indexOf(game.userkey) === -1) {
         vgueswords.textContent = vgueswords.textContent + " " + game.userkey;
-
         for (var i = 0; i < game.word.length; i++) {
           if (game.word[i] === game.userkey) {
             game.sust_letter(i);
-            ifmatch = true;
+            game.matchesnumber++;
+            if (game.matchesnumber === game.word.length) {
+              game.stop = true;
+              vwinscounter++;
+              vwins.textContent = vwinscounter;
+            }
           }
         }
-        if (!ifmatch) {
+        if (game.word.indexOf(game.userkey) === -1) {
           vguesremcounter--;
           vguesrem.textContent = vguesremcounter;
           if (vguesremcounter === 0) {
-            game.lose = true;
+            game.stop = true;
             vlosescounter++;
             vloses.textContent = vlosescounter;
           }
