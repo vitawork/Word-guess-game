@@ -43,7 +43,7 @@
                 Guesses remaining: <span id="guesrem"><strong> 6</strong></span>
               </h3>
               <h3>
-                Guessed words: <span id="gueswords"><strong> -</strong></span>
+                Guessed words: <span id="gueswords"><strong> </strong></span>
               </h3>
             </div>
           </div>
@@ -59,54 +59,6 @@
 
     
 
-    <!-- <script type="text/javascript">
-
-      var computerChoices = ["r", "p", "s"];
-      var yourch = document.getElementById("your_ch");
-      var compch = document.getElementById("comp_ch");
-      var win = document.getElementById("wins");
-      var winsnumber = 0;
-      var ties = document.getElementById("ties");
-      var tiesnumber = 0;
-      var lose = document.getElementById("loses");
-      var losesnumber = 0;
-      console.log(losesnumber);
-
-
-      document.onkeyup = function(event) {
-
-        var userGuess = event.key;
-
-        if (userGuess === "r" || userGuess === "p" || userGuess === "s") {
-          yourch.textContent = event.key;
-
-
-          var computerGuess =
-            computerChoices[Math.floor(Math.random() * computerChoices.length)];
-          compch.textContent = computerGuess;
-
-          if (userGuess === computerGuess) {
-            tiesnumber++;
-            ties.textContent = tiesnumber;
-          } else {
-            if (userGuess === "s" && computerGuess == "p") {
-              winsnumber++;
-            }
-            if (userGuess === "p" && computerGuess == "r") {
-              winsnumber++;
-            }
-            if (userGuess === "r" && computerGuess == "s") {
-              winsnumber++;
-            }
-          losesnumber++;
-          console.log(losesnumber);
-          win.textContent = winsnumber;
-          lose.textContent = losesnumber;
-        }
-
-
-      };
-    </script> -->
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
