@@ -1,10 +1,11 @@
+* {
+  font-family: "Nosifer", cursive;
+}
 
 .header {
   margin-top: 20px;
   margin-bottom: 10px;
-  color: rgb(110, 19, 37);
-  font-family: "Sedgwick Ave Display", cursive;
-  font-size: 800%;
+  color: rgb(158, 20, 48);
   padding: 0;
   background-image: repeating-radial-gradient(
     rgb(208, 212, 218),
@@ -13,8 +14,19 @@
   );
 }
 #mainbox {
-  background-color: rgb(198, 199, 202);
-  padding-top: 0;
+  background-image: linear-gradient(
+    rgb(198, 199, 202) 20%,
+    rgb(198, 199, 202) 75%,
+    rgb(158, 20, 38)
+  );
 }
 
+span {
+  color: rgb(90, 22, 34);
+}
 
+.sss {
+  border: 1px solid rgb(54, 54, 54);
+  padding: 5%;
+  margin-top: 10px;
+}

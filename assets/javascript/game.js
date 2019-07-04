@@ -8,6 +8,7 @@ $(document).ready(function() {
   var vgueswords = document.getElementById("gueswords");
   var vword = document.getElementById("word");
   var vpush = document.getElementById("push");
+  var soundStart = new Audio("./assets/sounds/De La Cripta.mp3");
 
   var game = {
     wordsarray: ["vampire", "zombie", "monster", "underground"],
@@ -33,7 +34,7 @@ $(document).ready(function() {
       vguesremcounter = 6;
       this.userkey = "";
       this.stop = true;
-      vword.textContent = "Push a key to star.";
+      vword.textContent = "Press a key to star.";
       this.matchesnumber = 0;
       canvas.clear();
       drawStick();
@@ -91,7 +92,7 @@ $(document).ready(function() {
     });
     canvas.add(line3);
 
-    var line4 = new fabric.Line([100, 100, 500, 100], {
+    var line4 = new fabric.Line([100, 100, 400, 100], {
       left: 0,
       top: 450,
       stroke: "rgba(65, 60, 49, 0.856)",
@@ -165,6 +166,7 @@ $(document).ready(function() {
   }
 
   drawStick();
+  soundStart.play();
 
   document.onkeyup = function(event) {
     game.userkey = event.key;
@@ -177,9 +179,12 @@ $(document).ready(function() {
               game.sust_letter(i);
               game.matchesnumber++;
               if (game.matchesnumber === game.word.length) {
-                game.reset();
                 vwinscounter++;
                 vwins.textContent = vwinscounter;
+                vword.textContent = game.word;
+                setTimeout(function() {
+                  game.reset();
+                }, 3000);
               }
             }
           }
@@ -207,9 +212,12 @@ $(document).ready(function() {
                 break;
             }
             if (vguesremcounter === 0) {
-              game.reset();
               vlosescounter++;
               vloses.textContent = vlosescounter;
+              vword.textContent = game.word;
+              setTimeout(function() {
+                game.reset();
+              }, 3000);
             }
           }
         }
