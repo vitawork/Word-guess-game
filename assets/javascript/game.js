@@ -56,6 +56,117 @@ $(document).ready(function() {
     }
   };
 
+  //////////
+
+  var canvas = new fabric.Canvas("drawarea", {
+    backgroundColor: "#EEEEEE",
+    selectionColor: "gray",
+    selectionLineWidth: 2
+  });
+  var line1 = new fabric.Line([100, 600, 100, 200], {
+    left: 50,
+    top: 50,
+    stroke: "brgba(27, 19, 11, 0.904)",
+    strokeWidth: 20
+  });
+  canvas.add(line1);
+
+  var line2 = new fabric.Line([100, 283, 100, 200], {
+    left: 250,
+    top: 70,
+    stroke: "rgba(177, 159, 79, 0.904)",
+    strokeWidth: 5
+  });
+  canvas.add(line2);
+
+  var line3 = new fabric.Line([100, 100, 305, 100], {
+    left: 50,
+    top: 50,
+    stroke: "rgba(27, 19, 11, 0.904)",
+    strokeWidth: 20
+  });
+  canvas.add(line3);
+
+  var line4 = new fabric.Line([100, 100, 500, 100], {
+    left: 0,
+    top: 450,
+    stroke: "rgba(65, 60, 49, 0.856)",
+    strokeWidth: 10
+  });
+  canvas.add(line4);
+
+  function drawHead() {
+    var circle = new fabric.Circle({
+      left: 225,
+      top: 150,
+      strokeWidth: 6,
+      radius: 25,
+      fill: "rgba(56, 11, 19, 0.904)",
+      stroke: "rgba(32, 12, 16, 0.904)"
+    });
+    canvas.add(circle);
+  }
+
+  function drawb() {
+    // cuerpo del señor
+    var line = new fabric.Line([100, 100, 100, 200], {
+      left: 245,
+      top: 205,
+      stroke: "rgba(56, 11, 19, 0.904)",
+      strokeWidth: 15
+    });
+    canvas.add(line);
+  }
+
+  function drawlh() {
+    var mi = new fabric.Line([50, 50, 5, 00], {
+      left: 250,
+      top: 200,
+      stroke: "rgba(75, 22, 31, 0.904)",
+      strokeWidth: 5
+    });
+    canvas.add(mi);
+  }
+
+  function drawrh() {
+    var md = new fabric.Line([100, 05, 50, 70], {
+      left: 200,
+      top: 200,
+      stroke: "rgba(75, 22, 31, 0.904)",
+      strokeWidth: 5
+    });
+    canvas.add(md);
+  }
+
+  function drawlf() {
+    //pies izquierdo
+    var pi = new fabric.Line([50, 5, 0, 70], {
+      left: 200,
+      top: 300,
+      stroke: "rgba(75, 22, 31, 0.904)",
+      strokeWidth: 5
+    });
+    canvas.add(pi);
+  }
+
+  function drawrf() {
+    var pd = new fabric.Line([50, 50, 5, 00], {
+      left: 250,
+      top: 300,
+      stroke: "rgba(75, 22, 31, 0.904)",
+      strokeWidth: 5
+    });
+    canvas.add(pd);
+  }
+
+  drawHead(); ////////////
+  drawb(); ////////////
+  drawlh(); ////////////
+  drawrh(); ////////////
+  drawlf(); ////////////
+  drawrf(); ////////////
+  //////////
+
   document.onkeyup = function(event) {
     game.userkey = event.key;
     if (!game.stop) {
@@ -88,7 +199,7 @@ $(document).ready(function() {
       game.stop = false;
       game.word = game.choosing_random();
       game.empty_word();
-      //   console.log(game.word);
+      console.log(game.word); ///////////
     }
   };
 });
