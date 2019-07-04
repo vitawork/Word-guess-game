@@ -35,6 +35,8 @@ $(document).ready(function() {
       this.stop = true;
       vword.textContent = "Push a key to star.";
       this.matchesnumber = 0;
+      canvas.clear();
+      drawStick();
     },
 
     sust_letter: function(index) {
@@ -59,41 +61,44 @@ $(document).ready(function() {
   //////////
 
   var canvas = new fabric.Canvas("drawarea", {
-    backgroundColor: "#EEEEEE",
+    backgroundColor: " rgb(198, 199, 202)",
     selectionColor: "gray",
     selectionLineWidth: 2
   });
-  var line1 = new fabric.Line([100, 600, 100, 200], {
-    left: 50,
-    top: 50,
-    stroke: "brgba(27, 19, 11, 0.904)",
-    strokeWidth: 20
-  });
-  canvas.add(line1);
 
-  var line2 = new fabric.Line([100, 283, 100, 200], {
-    left: 250,
-    top: 70,
-    stroke: "rgba(177, 159, 79, 0.904)",
-    strokeWidth: 5
-  });
-  canvas.add(line2);
+  function drawStick() {
+    var line1 = new fabric.Line([100, 600, 100, 200], {
+      left: 50,
+      top: 50,
+      stroke: "brgba(27, 19, 11, 0.904)",
+      strokeWidth: 20
+    });
+    canvas.add(line1);
 
-  var line3 = new fabric.Line([100, 100, 305, 100], {
-    left: 50,
-    top: 50,
-    stroke: "rgba(27, 19, 11, 0.904)",
-    strokeWidth: 20
-  });
-  canvas.add(line3);
+    var line2 = new fabric.Line([100, 283, 100, 200], {
+      left: 250,
+      top: 70,
+      stroke: "rgba(177, 159, 79, 0.904)",
+      strokeWidth: 5
+    });
+    canvas.add(line2);
 
-  var line4 = new fabric.Line([100, 100, 500, 100], {
-    left: 0,
-    top: 450,
-    stroke: "rgba(65, 60, 49, 0.856)",
-    strokeWidth: 10
-  });
-  canvas.add(line4);
+    var line3 = new fabric.Line([100, 100, 305, 100], {
+      left: 50,
+      top: 50,
+      stroke: "rgba(27, 19, 11, 0.904)",
+      strokeWidth: 20
+    });
+    canvas.add(line3);
+
+    var line4 = new fabric.Line([100, 100, 500, 100], {
+      left: 0,
+      top: 450,
+      stroke: "rgba(65, 60, 49, 0.856)",
+      strokeWidth: 10
+    });
+    canvas.add(line4);
+  }
 
   function drawHead() {
     var circle = new fabric.Circle({
@@ -159,13 +164,7 @@ $(document).ready(function() {
     canvas.add(pd);
   }
 
-  drawHead(); ////////////
-  drawb(); ////////////
-  drawlh(); ////////////
-  drawrh(); ////////////
-  drawlf(); ////////////
-  drawrf(); ////////////
-  //////////
+  drawStick();
 
   document.onkeyup = function(event) {
     game.userkey = event.key;
@@ -187,6 +186,26 @@ $(document).ready(function() {
           if (game.word.indexOf(game.userkey) === -1) {
             vguesremcounter--;
             vguesrem.textContent = vguesremcounter;
+            switch (vguesremcounter) {
+              case 5:
+                drawHead();
+                break;
+              case 4:
+                drawb();
+                break;
+              case 3:
+                drawlh();
+                break;
+              case 2:
+                drawrh();
+                break;
+              case 1:
+                drawlf();
+                break;
+              case 0:
+                drawrf();
+                break;
+            }
             if (vguesremcounter === 0) {
               game.reset();
               vlosescounter++;
